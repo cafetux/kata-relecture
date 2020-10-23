@@ -1,6 +1,8 @@
 package org.library.shop.search;
 
 
+import org.library.shop.cart.AddToCartCriteria;
+import org.library.shop.cart.UserCart;
 import org.library.shop.model.Book;
 import org.library.shop.repository.Books;
 
@@ -44,6 +46,9 @@ public class BooksSearchService {
             if (matchName != Boolean.FALSE && matchAuthor != Boolean.FALSE && matchIsbn != Boolean.FALSE) {
                 result.add(book);
             }
+        }
+        if(criteria instanceof AddToCartCriteria) {
+            UserCart.addToUserCart(result.get(0));
         }
         return new SearchResult(result);
     }
