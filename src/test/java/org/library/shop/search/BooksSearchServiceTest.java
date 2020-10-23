@@ -2,6 +2,7 @@ package org.library.shop.search;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
+import org.library.shop.cart.AddToCartCriteria;
 
 
 public class BooksSearchServiceTest {
@@ -74,6 +75,13 @@ public class BooksSearchServiceTest {
         criteria.setName("dans");
         criteria.setAuthor("Stiegler");
         Assertions.assertThat(booksSearchService.search(criteria).get()).hasSize(1);
+    }
+
+    @Test
+    public void should_add_book_to_cart() {
+        AddToCartCriteria criteria = new AddToCartCriteria();
+        criteria.setIsbn("5357853246");
+        booksSearchService.search(criteria);
     }
 
 }
